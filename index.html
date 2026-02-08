@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+  font-family: Arial, sans-serif;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.card {
+  background: rgb(242, 144, 196);
+  padding: 40px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(244, 147, 212, 0.2);
+  position: relative;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 15px;
+  cursor: pointer;
+}
+
+#noBtn {
+  position: absolute;
+}
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 5s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Hello My Dear</h2>
+  <h1>Will you be my Valentine? ❤️</h1>
+
+  <button onclick="yesClicked()">YES</button>
+  <button id="noBtn">NO</button>
+
+   <div id="loveMessage" style="display:none;">
+  <img src="https://cdn3.emoji.gg/stickers/60218-bearhug.gif" 
+       alt="Hug" width="200">
+  <h2>Happy Valentine’s Day Buddi ❤️🤗</h2>
+</div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+function yesClicked() {
+  document.querySelector("h1").style.display = "none";
+  document.querySelector("h2").style.display = "none";
+  document.querySelector("button").style.display = "none";
+  noBtn.style.display = "none";
+
+  document.getElementById("loveMessage").style.display = "block";
+
+  setInterval(createHeart, 300);
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}
+</script>
+
+</body>
+</html>
