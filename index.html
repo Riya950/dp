@@ -66,6 +66,7 @@ button {
 <div class="card">
   <h2>Hello My Dear</h2>
   <h1>Will you be my Valentine? ❤️</h1>
+  <h3 id="typingText"></h3>
 
   <button onclick="yesClicked()">YES</button>
   <button id="noBtn">NO</button>
@@ -95,8 +96,26 @@ function yesClicked() {
   document.getElementById("loveMessage").style.display = "block";
 
   setInterval(createHeart, 300);
+
+  startTyping();
+}
+  
+function startTyping() {
+  const text = "I never feel because of you.i am lucky to have you.My heart is full of love for you.My heart is and will always be yours. I am waiting for you....Love you Daddy❤️🤗";
+  let index = 0;
+
+  function typeEffect() {
+    if (index < text.length) {
+      document.getElementById("typingText").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 80);
+    }
+  }
+
+  typeEffect();
 }
 
+  
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
@@ -114,4 +133,5 @@ function createHeart() {
 </script>
 
 </body>
+
 </html>
